@@ -27,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get('DEBUG') == 'TRUE'
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = ['localhost']
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -99,6 +99,9 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'EXCEPTION_handler': 'utils.custom_exception_handler.custom_exception_handler'
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
