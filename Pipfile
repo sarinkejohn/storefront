@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+django-dotenv = "*"
+psycopg2 = "*"
+mysqlclient = "*"
+django-filter = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
