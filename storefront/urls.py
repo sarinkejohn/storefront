@@ -23,3 +23,4 @@ urlpatterns = [
 ]
 
 handler404 = 'utils.error_views.handle404'
+handler500 = 'utils.error_views.handle500'
