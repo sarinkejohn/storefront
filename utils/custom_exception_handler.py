@@ -9,6 +9,7 @@ from rest_framework import status
 def custom_exception_handler(exc, context):
 
     response = exception_handler(exc, context)
+  
 
     if response is not None:
         http_code_to_message = {v.value: v.description for v in HTTPStatus}
@@ -17,7 +18,7 @@ def custom_exception_handler(exc, context):
             "error": {
                 "status_code": 0,
                 "message": '',
-                "details": []
+                "details": [],
             }
         }
         error = error_payload["error"]

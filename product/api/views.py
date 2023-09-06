@@ -39,6 +39,7 @@ def get_products(request):
 
 @api_view(['GET'])
 def get_product(request, pk):
+    print(hello)
     # product = Product.objects.get(id=pk)
     product = get_object_or_404(Product, id=pk)
     serializer = ProductSerializer(product, many=False)
