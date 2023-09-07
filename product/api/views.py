@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
-from ..models import Product
+from ..models import *
 from rest_framework.decorators import api_view
-from .serializer import ProductSerializer
+from .serializer import ProductImageSerializer,ProductSerializer
 from rest_framework.response import Response
 from .filter import ProductsFilters
 from rest_framework.pagination import PageNumberPagination
@@ -12,7 +12,8 @@ def getRoutes(request):
     routes = [
 
         'GET /api/products',
-        'GET /api/products/:id'
+        'GET /api/products/:id',
+        'POST /api/upload_images/',
 
     ]
     return Response(routes)
@@ -39,9 +40,25 @@ def get_products(request):
 
 @api_view(['GET'])
 def get_product(request, pk):
-    print(hello)
     # product = Product.objects.get(id=pk)
     product = get_object_or_404(Product, id=pk)
     serializer = ProductSerializer(product, many=False)
 
     return Response(serializer.data)
+
+# handles product images uploading
+
+
+@api_view(['POST'])
+def upload_product_images(request):
+    data = request.data
+    files = request.FILES.getlist('images')
+
+    images = []
+    for f in files:
+        image = ProductImages.objects.create(
+            product=Product(data['product']), images=f)
+        images.append(image)
+    serializers = ProductImageSerializer(images, many=True)
+
+    return Response(serializers.data)

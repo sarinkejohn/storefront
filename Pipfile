@@ -10,6 +10,9 @@ django-dotenv = "*"
 psycopg2 = "*"
 mysqlclient = "*"
 django-filter = "*"
+django-storages = "*"
+pillow = "*"
+boto3 = "*"
 
 [dev-packages]
 
