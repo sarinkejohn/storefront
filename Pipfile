@@ -13,6 +13,7 @@ django-filter = "*"
 django-storages = "*"
 pillow = "*"
 boto3 = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

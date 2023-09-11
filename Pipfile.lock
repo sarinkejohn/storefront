@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "9edaa3b658bde121b8185e1c3cb62e34efa8ed86d3d9ad51ef901ca917f34ea3"
+            "sha256": "958fb1e3db991a182a2773f1a0984e8d9702ffd9648637e5ae807997bf837ab0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,19 +26,19 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:734bf24b9240a366b4a0d7e37433ef01664a3568d8bb65be583cc2a4ed2947c5",
-                "sha256:9f36834a1a777002b4b4600415ced83bc62d42b9c36d8c75f5fc007a58d0ae17"
+                "sha256:c53c92dfe22489ba31e918c2e7b59ff43e2e778bd3d3559e62351a739382bb5c",
+                "sha256:eea3b07e0f28c9f92bccab972af24a3b0dd951c69d93da75227b8ecd3e18f6c4"
             ],
             "index": "pypi",
-            "version": "==1.28.42"
+            "version": "==1.28.44"
         },
         "botocore": {
             "hashes": [
-                "sha256:a51607e9f367e53768d37eacde244bc31dbaff4e7dde453cc772a8f75648f04a",
-                "sha256:cedf7d5eb55f120faadd56d3bced2139523479adb4df62c0c5ee5d46b2ffa836"
+                "sha256:83d61c1ca781e6ede19fcc4d5dd73004eee3825a2b220f0d7727e32069209d98",
+                "sha256:84f90919fecb4a4f417fd10145c8a87ff2c4b14d6381cd34d9babf02110b3315"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.31.42"
+            "version": "==1.31.44"
         },
         "django": {
             "hashes": [
@@ -79,6 +79,14 @@
             ],
             "index": "pypi",
             "version": "==3.14.0"
+        },
+        "djangorestframework-simplejwt": {
+            "hashes": [
+                "sha256:631d7ae2ed4365d7196a35d3cc0f6d382f7bd3361fb24c894f8f92b4da5db27d",
+                "sha256:8e4c5dfca8d11c0b8a66dfd8a4e3fc1c6aa7ea188d10907ff91c942f4b52ed66"
+            ],
+            "index": "pypi",
+            "version": "==5.3.0"
         },
         "jmespath": {
             "hashes": [
@@ -179,6 +187,14 @@
             ],
             "index": "pypi",
             "version": "==2.9.7"
+        },
+        "pyjwt": {
+            "hashes": [
+                "sha256:57e28d156e3d5c10088e0c68abb90bfac3df82b40a71bd0daa20c65ccd5c23de",
+                "sha256:59127c392cc44c2da5bb3192169a91f429924e17aff6534d70fdc02ab3e04320"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==2.8.0"
         },
         "python-dateutil": {
             "hashes": [
