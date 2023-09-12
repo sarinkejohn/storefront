@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from .filter import ProductsFilters
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import status
+from django.db.models import Avg
 
 
 @api_view(['GET'])
@@ -130,3 +131,59 @@ def delete_product(request, pk):
     product.delete()
 
     return Response({'Details': 'product is deleted'}, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_review(request, pk):
+    user = request.user
+    data = request.data
+    product = get_object_or_404(Product, id=pk)
+
+    review = product.reviews.filter(user=user)
+
+    if int(data['ratings']) <= 0 or int(data['ratings']) > 5:
+        return Response({'error': 'Please select rating between 1-5'}, status=status.HTTP_400_BAD_REQUEST)
+    elif review.exists():
+        new_review = {'ratings': data['ratings'], 'comment': data['comment']}
+        review.update(**new_review)
+
+        rating = product.reviews.aggregate(avg_rating=Avg('ratings'))
+        product.ratings = rating['avg_rating']
+        product.save()
+        return Response({'detail': 'Review updated'})
+    else:
+        Review.objects.create(
+            user=user,
+            product=product,
+            ratings=data['ratings'],
+            comment=data['comment']
+        )
+        rating = product.reviews.aggregate(avg_rating=Avg('ratings'))
+        product.ratings = rating['avg_rating']
+        product.save()
+        return Response({'detail': 'Review Posted successful'})
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_review(request, pk):
+    user = request.user
+    data = request.data
+    product = get_object_or_404(Product, id=pk)
+
+    review = product.reviews.filter(user=user)
+    if review.exists():
+        review.delete()
+
+        rating = product.reviews.aggregate(avg_rating=Avg('ratings'))
+        # check if theire is reviews first
+        if rating['avg_rating'] is None:
+            rating['avg_rating'] = 0
+
+        product.ratings = rating['avg_rating']
+        product.save()
+        return Response({'detail': 'Review Deleted successful'})
+
+    else:
+        return Response({'error': 'Review not Found'}, status=status.HTTP_404_NOT_FOUND)
