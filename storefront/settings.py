@@ -84,6 +84,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'storefront.wsgi.application'
 
+# Email--testing by mail trap
+MAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# MAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_SSL: False
+EMAIL_USE_TLS: False
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
