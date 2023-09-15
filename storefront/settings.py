@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'product.apps.ProductConfig',
     'account.apps.AccountConfig',
+    'order.apps.OrderConfig',
     'django_filters',
     'storages',
     'rest_framework_simplejwt',
