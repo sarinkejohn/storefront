@@ -6,9 +6,43 @@ from rest_framework import status
 from .models import Order, OrderItem
 from product.models import Product
 from .serializer import *
+from .filter import OrderFilter
+from rest_framework.pagination import PageNumberPagination
 
 
 # Create your views here.
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_orders(request):
+    filterset = OrderFilter(
+        request.GET, queryset=Order.objects.all().order_by('id'))
+    count = filterset.qs.count()
+
+    # Paginator
+    resPerPage = 1
+    paginator = PageNumberPagination()
+    paginator.page_size = resPerPage
+    queryset = paginator.paginate_queryset(filterset.qs, request)
+
+    serializers = OrderSerializer(queryset, many=True)
+    return Response(
+        {
+            'count': count,
+            'resPerPage': resPerPage,
+            'orders': serializers.data
+        }
+    )
+
+
+# single order
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_order(request, pk):
+    order = get_object_or_404(Order, id=pk)
+    serializers = OrderSerializer(order, many=False)
+    return Response({'orders': serializers.data})
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def new_order(request):
