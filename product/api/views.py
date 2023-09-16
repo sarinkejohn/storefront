@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from ..models import *
 from .serializer import ProductImageSerializer, ProductSerializer
@@ -59,7 +59,7 @@ def get_product(request, pk):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated, IsAdminUser])
 def new_product(request):
     data = request.data
     serializer = ProductSerializer(data=data)
@@ -78,6 +78,7 @@ def new_product(request):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated, IsAdminUser])
 def upload_product_images(request):
     data = request.data
     files = request.FILES.getlist('images')
@@ -95,6 +96,7 @@ def upload_product_images(request):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated, IsAdminUser])
 def update_product(request, pk):
     product = get_object_or_404(Product, id=pk)
 
@@ -117,6 +119,7 @@ def update_product(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated, IsAdminUser])
 def delete_product(request, pk):
     product = get_object_or_404(Product, id=pk)
 
