@@ -30,6 +30,7 @@ class Order(models.Model):
     phone_no = models.CharField(max_length=100, default="", blank=False)
     total_amount = models.CharField(max_length=100, default="", blank=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    
     payment_status = models.CharField(
         max_length=20, choices=PaymentStatus.choices,
         default=PaymentStatus.UNPAID
@@ -41,7 +42,7 @@ class Order(models.Model):
     )
     order_status = models.CharField(
         max_length=25,
-        choices=PaymentStatus.choices,
+        choices=OrderStatus.choices,
         default=OrderStatus.PROCESSING
 
     )

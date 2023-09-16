@@ -19,7 +19,7 @@ def get_orders(request):
     count = filterset.qs.count()
 
     # Paginator
-    resPerPage = 1
+    resPerPage = 5
     paginator = PageNumberPagination()
     paginator.page_size = resPerPage
     queryset = paginator.paginate_queryset(filterset.qs, request)
@@ -83,3 +83,22 @@ def new_order(request):
 
     serializer = OrderSerializer(order, many=False)
     return Response(serializer.data)
+# update order status ---the same as udating all order info which can be done on a new route
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def processing_order(request, pk):
+    order = get_object_or_404(Order, id=pk)
+    order.order_status = request.data['order_status']
+    order.save()
+    serializers = OrderSerializer(order, many=False)
+    return Response({'orders': serializers.data})
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_order(request, pk):
+    order = get_object_or_404(Order, id=pk)
+    order.delete()
+    return Response({'details': 'Order deleted sucessful!!!'})
