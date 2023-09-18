@@ -8,4 +8,8 @@ urlpatterns = [
          views.processing_order, name='processing-order'),
     path('orders/<str:pk>/delete/', views.delete_order, name='delete-order'),
     path('order/new/', views.new_order, name='new-order'),
+    path('create-checkout-session/', views.create_checkout_session,
+         name='create_checkout_session'),
+    
+    path('order/webhook/', views.stripe_webhook, name='order-webhook'),     
 ]

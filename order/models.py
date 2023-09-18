@@ -30,7 +30,7 @@ class Order(models.Model):
     phone_no = models.CharField(max_length=100, default="", blank=False)
     total_amount = models.CharField(max_length=100, default="", blank=False)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    
+
     payment_status = models.CharField(
         max_length=20, choices=PaymentStatus.choices,
         default=PaymentStatus.UNPAID
@@ -60,6 +60,7 @@ class OrderItem(models.Model):
     name = models.CharField(max_length=200, default="", blank=False)
     price = models.DecimalField(
         decimal_places=2, max_digits=7, blank=False)
+    images = models.CharField(max_length=500, default="", blank=False)
 
     def __str__(self):
         return str(self.name)
