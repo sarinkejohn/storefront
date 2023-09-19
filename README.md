@@ -1,2 +1,3 @@
 # storefront
-a full ecommerce API's with Django
+**Ecommerce REST API with Django REST Framework Python**
+
