@@ -30,8 +30,8 @@ def custom_exception_handler(exc, context):
         response.data = error_payload
         return response
 # if you want to see all error details commet all the codes in else block and check the terminal
-    # else:
-    #     error = {
-    #         "error": "Something went wrong..."
-    #     }
-    #     return Response(error, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        error = {
+            "error": "Something went wrong..."
+        }
+        return Response(error, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
