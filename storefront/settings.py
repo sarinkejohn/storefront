@@ -32,7 +32,7 @@ DEBUG = os.environ.get('DEBUG')
 
 
 ALLOWED_HOSTS = [
-    'storefront-env.eba-vkufy232.ap-northeast-1.elasticbeanstalk.com', 'localhost']
+    "storefront-env.eba-vkufy232.ap-northeast-1.elasticbeanstalk.com", "localhost"]
 
 
 # Application definition
