@@ -31,7 +31,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'storefront-env.eba-vkufy232.ap-northeast-1.elasticbeanstalk.com', 'localhost']
 
 
 # Application definition
@@ -100,17 +101,25 @@ EMAIL_USE_TLS: False
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': os.environ.get('ENGINE_SQLITE'),
+    #     'NAME': os.environ.get('NAME_SQLITE'),
+    # },
+    # 'default': {
+    #     'ENGINE': os.environ.get('ENGINE_MYSQL'),
+    #     'NAME': os.environ.get('NAME_MYSQL'),
+    #     'USER': os.environ.get('USER_MYSQL'),
+    #     'PASSWORD': os.environ.get('PASSWORD_MYSQL'),
+    #     'HOST': os.environ.get('HOST_MYSQL'),
+    #     'PORT': os.environ.get('PORT_MYSQL'),
+    # },
     'default': {
-        'ENGINE': os.environ.get('ENGINE_SQLITE'),
-        'NAME': os.environ.get('NAME_SQLITE'),
-    },
-    'default': {
-        'ENGINE': os.environ.get('ENGINE_MYSQL'),
-        'NAME': os.environ.get('NAME_MYSQL'),
-        'USER': os.environ.get('USER_MYSQL'),
-        'PASSWORD': os.environ.get('PASSWORD_MYSQL'),
-        'HOST': os.environ.get('HOST_MYSQL'),
-        'PORT': os.environ.get('PORT_MYSQL'),
+        'ENGINE': os.environ.get('ENGINE_PG'),
+        'NAME': os.environ.get('NAME_PG'),
+        'USER': os.environ.get('USER_PG'),
+        'PASSWORD': os.environ.get('PASSWORD_PG'),
+        'HOST': os.environ.get('HOST_PG'),
+        'PORT': os.environ.get('PORT_PG'),
     }
 }
 
@@ -164,7 +173,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -16,14 +16,18 @@ def getRoutes(request):
 
         'GET /api/products',
         'GET /api/products/:id',
-        'GET /api/product/:id/update/',
+        'PUT /api/product/:id/update/',
         'GET /api/product/:id/delete/',
         'POST /api/upload_images/',
         'POST /api/product/new/',
         'POST /api/register/',
         'POST /api/token/',
         'POST /api/me/',
-
+        'POST /api/token/',
+        'PUT api/me/update/',
+        'POST /api/forgot_password/',
+        'POST /api/reset_password/3ULKeRy---from  your email',
+        'Import postman collection found on project dir files'
 
     ]
     return Response(routes)
